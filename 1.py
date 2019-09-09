@@ -10,7 +10,7 @@ def check_size(now, other):
     n, m = size(now)
     n2, m2 = size(other)
     if n != n2 or m != m2:
-        raise Exception('Матрицы разного размера!')
+        raise MatrixError("Sizez of matrixs are different")
     return (n, m)
 
 class MyMatrix:
@@ -20,15 +20,16 @@ class MyMatrix:
         self.__matrix = copy.deepcopy(data)
               
     def __repr__(self):
-        s = ''
         maxi = - float('INF')
         for i in range(len(self.__matrix)):
             maxi = max(maxi, max(self.__matrix[i]))
+        s = []
+        a = '{:' + str(len(str(maxi)) + 1) + '}'
         for elem in self.__matrix:
+            s.append(str())
             for num in elem:
-                s += (len(str(maxi)) - len(str(num)) + 1) * ' ' + str(num)
-            s += '\n'
-        return s
+                s[-1] += a.format(num)
+        return '\n'.join(s)
 
     def size(self) -> tuple:
         if len(self.__matrix) == 0:
