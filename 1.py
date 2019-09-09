@@ -1,4 +1,18 @@
 import copy
+
+def size(a):
+    if len(a) == 0:
+        return (0, 0)
+    else:
+        return(len(a), len(a[0]))
+
+def check_size(now, other):
+    n, m = size(now)
+    n2, m2 = size(other)
+    if n != n2 or m != m2:
+        raise Exception('Матрицы разного размера!')
+    return (n, m)
+
 class MyMatrix:
     def __init__(self, data: list):
         if not type(data) == list:
@@ -54,17 +68,7 @@ class MyMatrix:
         return a
     
     def __add__(self, other):
-        def size(a):
-            if len(a) == 0:
-                return (0, 0)
-            else:
-                return(len(a), len(a[0]))
-        
-        n, m = size(self.__matrix)
-        n2, m2 = size(other)
-        if n != n2 or m != m2:
-            raise Exception('Матрицы разного размера!')
-        
+        n, m = check_size(self.__matrix, other)
         new = [[0 for i in range(m)] for i in range(n)]
         for i in range(n):
             for j in range(m):
@@ -72,18 +76,7 @@ class MyMatrix:
         return new
     
     def __sub__(self, other):
-        
-        def size(a):
-            if len(a) == 0:
-                return (0, 0)
-            else:
-                return(len(a), len(a[0]))
-        
-        n, m = size(self.__matrix)
-        n2, m2 = size(other)
-        if n != n2 or m != m2:
-            raise Exception('Матрицы разного размера!')
-        
+        n, m = check_size(self.__matrix, other)
         new = [[0 for i in range(m)] for i in range(n)]
         for i in range(n):
             for j in range(m):
