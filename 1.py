@@ -6,10 +6,15 @@ class MyMatrix:
         self.__matrix = copy.deepcopy(data)
               
     def __repr__(self):
-        s = []
+        s = ''
+        maxi = - float('INF')
         for i in range(len(self.__matrix)):
-            s.append(' '.join(map(str, self.__matrix[i])))
-        return '\n'.join(s)
+            maxi = max(maxi, max(self.__matrix[i]))
+        for elem in self.__matrix:
+            for num in elem:
+                s += (len(str(maxi)) - len(str(num)) + 1) * ' ' + str(num)
+            s += '\n'
+        return s
 
     def size(self) -> tuple:
         if len(self.__matrix) == 0:
@@ -58,7 +63,7 @@ class MyMatrix:
         n, m = size(self.__matrix)
         n2, m2 = size(other)
         if n != n2 or m != m2:
-            raise Exception('Матрицы разного размера !')
+            raise Exception('Матрицы разного размера!')
         
         new = [[0 for i in range(m)] for i in range(n)]
         for i in range(n):
@@ -77,7 +82,7 @@ class MyMatrix:
         n, m = size(self.__matrix)
         n2, m2 = size(other)
         if n != n2 or m != m2:
-            raise Exception('Матрицы разного размера !')
+            raise Exception('Матрицы разного размера!')
         
         new = [[0 for i in range(m)] for i in range(n)]
         for i in range(n):
