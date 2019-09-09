@@ -31,7 +31,10 @@ class MyMatrix:
         return [elem[::-1] for elem in a]
 
     def transpose(self):
-        n, m = len(self.__matrix), len(self.__matrix[0])
+        if len(self.__matrix) == 0:
+            n, m = 0, 0
+        else:
+            n, m = len(self.__matrix), len(self.__matrix[0])
         new = [[0 for i in range(n)] for i in range(m)]
         for i in range(len(self.__matrix)):
             for j in range(len(self.__matrix[i])):
