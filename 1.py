@@ -20,11 +20,11 @@ class MyMatrix:
         self.__matrix = copy.deepcopy(data)
               
     def __repr__(self):
-        cnt = 0
+        max_num_len = 0
         for elem in self.__matrix:
             for num in elem:
-                if len(str(num)) > cnt:
-                    cnt = len(str(num))
+                if len(str(num)) > max_num_len:
+                    max_num_len = len(str(num))
         s = []
         a = '{:' + str(cnt  + 1) + '}'
         for elem in self.__matrix:
