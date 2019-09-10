@@ -21,10 +21,12 @@ class MyMatrix:
               
     def __repr__(self):
         maxi = - float('INF')
-        for i in range(len(self.__matrix)):
-            maxi = max(maxi, max(self.__matrix[i]))
+        for elem in self.__matrix:
+            for num in elem:
+                if len(str(num)) > maxi:
+                    maxi = len(str(num))
         s = []
-        a = '{:' + str(len(str(maxi)) + 1) + '}'
+        a = '{:' + str(maxi  + 1) + '}'
         for elem in self.__matrix:
             s.append(str())
             for num in elem:
