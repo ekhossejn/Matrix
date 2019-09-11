@@ -17,16 +17,25 @@ class MyMatrix:
     def __init__(self, data: list):
         if not type(data) == list:
             raise TypeError
+        
+        len_stroka = -1
+        for i in range(len(data)):
+            if len_stroka == -1:
+                len_stroka = len(data[0])
+            elif len_stroka == len(data[i]):
+                continue
+            else:
+                raise MatrixError('Matrix is wrong')
         self.__matrix = copy.deepcopy(data)
               
     def __repr__(self):
-        max_num_len = 0
+        maxi = - float('INF')
         for elem in self.__matrix:
             for num in elem:
-                if len(str(num)) > max_num_len:
-                    max_num_len = len(str(num))
+                if len(str(num)) > maxi:
+                    maxi = len(str(num))
         s = []
-        a = '{:' + str(cnt  + 1) + '}'
+        a = '{:' + str(maxi  + 1) + '}'
         for elem in self.__matrix:
             s.append(str())
             for num in elem:
@@ -71,17 +80,52 @@ class MyMatrix:
         return a
     
     def __add__(self, other):
-        n, m = check_size(self.__matrix, other)
+        n, m = check_size(self.__matrix, other.__matrix)
         new = [[0 for i in range(m)] for i in range(n)]
         for i in range(n):
             for j in range(m):
-                new[i][j] = self.__matrix[i][j] + other[i][j]
-        return new
+                new[i][j] = self.__matrix[i][j] + other.__matrix[i][j]
+        return MyMatrix(new)
     
     def __sub__(self, other):
-        n, m = check_size(self.__matrix, other)
+        n, m = check_size(self.__matrix, other.__matrix)
         new = [[0 for i in range(m)] for i in range(n)]
         for i in range(n):
             for j in range(m):
-                new[i][j] = self.__matrix[i][j] - other[i][j]
-        return new
+                new[i][j] = self.__matrix[i][j] - other.__matrix[i][j]
+        return MyMatrix(new)
+
+    def __iadd__(self, other):
+        self = self + other
+        return self
+        
+    def __isub__(self, other):
+        self = self - other
+        return self
+    
+    def __getitem__(self, key):
+        if type(key) == int:
+            return self.__matrix[key]
+        i, j = key
+        return self.__matrix[i][j]
+    
+    def __setitem__(self, key, value):
+        i, j = key
+        self.__matrix[i][j] = value
+    
+    def __mul__(self, other):
+        if (self.size()[0] != other.size()[1] or self.size()[1] != other.size()[0]):
+            raise MatrixError('Matrixs are wrong')
+        new = []
+        for i in range(self.size()[0]):
+            new.append([])
+            for j in range(other.size()[1]):
+                res = 0
+                for c in range(self.size()[1]):
+                    res += (self.__matrix[i][c] * other.__matrix[c][j])
+                new[i].append(res)
+        return MyMatrix(new)
+    
+    def __imul__(self, other):
+        self = self * other
+        return self
