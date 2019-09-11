@@ -29,13 +29,13 @@ class MyMatrix:
         self.__matrix = copy.deepcopy(data)
               
     def __repr__(self):
-        maxi = - float('INF')
+        max_num_len = - float('INF')
         for elem in self.__matrix:
             for num in elem:
-                if len(str(num)) > maxi:
-                    maxi = len(str(num))
+                if len(str(num)) > max_num_len:
+                    max_num_len = len(str(num))
         s = []
-        a = '{:' + str(maxi  + 1) + '}'
+        a = '{:' + str(max_num_len  + 1) + '}'
         for elem in self.__matrix:
             s.append(str())
             for num in elem:
