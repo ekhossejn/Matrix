@@ -79,6 +79,8 @@ class MyMatrix:
         a.transpose()
         return a
     
+    //////////////////////////////////////////////////EX. 1 IS FINISHED///////////////////////////////////////////////////////////
+    
     def __add__(self, other):
         n, m = check_size(self.__matrix, other.__matrix)
         new = [[0 for i in range(m)] for i in range(n)]
