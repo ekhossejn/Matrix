@@ -129,3 +129,14 @@ class MyMatrix:
     def __imul__(self, other):
         self = self * other
         return self
+    
+    def rotate_clockwise_90(self):
+        copy1 = [[0 for i in range(self.size()[0])] for i in range(self.size()[1])]
+        for i in range(self.size()[1]):
+            for j in range(self.size()[0]):
+                copy1[i][j] = self.__matrix[self.size()[0] - j - 1][i]
+        self.__matrix = copy.deepcopy(copy1)
+        
+    def rotate_counterclockwise_90(self):
+        for i in range(3):
+            self.rotate_clockwise_90()
