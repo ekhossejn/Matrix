@@ -10,6 +10,8 @@ def test_repr():
                 ans[-1] += '{:4}'.format(num)
     test = '\n'.join(ans)
     assert(a.__repr__() == test)
+    a = MyMatrix([])
+    assert(a.__repr__() == '')
     
 def test_size():
     a = MyMatrix([[1], [2], [3]])
