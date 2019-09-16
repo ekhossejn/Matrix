@@ -9,7 +9,7 @@ def test_repr():
             for num in elem:
                 ans[-1] += '{:4}'.format(num)
     test = '\n'.join(ans)
-    assert(print(a) == print(test))
+    assert(a.__repr__() == test)
     
 def test_size():
     a = MyMatrix([[1], [2], [3]])
