@@ -16,18 +16,22 @@ def test_repr():
 def test_size():
     mx = MyMatrix([[1], [2], [3]])
     assert(mx.size() == (3, 1))
-    mx = MyMatrix([])
-    assert(mx.size() == (0, 0))
+    mx = MyMatrix([[], [], []])
+    assert(mx.size() == (3, 0))
 
 def test_flip_up_down():
     mx = MyMatrix([[1, 2, 3], [4, 5, 6]])
     mx.flip_up_down()
     assert(mx.get_data() == [[4, 5, 6], [1, 2, 3]])
+    mx.flip_up_down()
+    assert(mx.get_data() == [[1, 2, 3], [4, 5, 6]])
 
 def test_flip_left_right():
     mx = MyMatrix([[1, 2, 3], [4, 5, 6]])
     mx.flip_left_right()
     assert(mx.get_data() == [[3, 2, 1], [6, 5, 4]])
+    mx.flip_left_right()
+    assert(mx.get_data() == [[1, 2, 3], [4, 5, 6]])
 
 def test_flipped_up_down():
     mx = MyMatrix([[1, 2, 3], [4, 5, 6]])
@@ -39,12 +43,12 @@ def test_flipped_left_right():
     assert(mx.flipped_left_right().get_data() == [[3, 2, 1], [6, 5, 4]])
     assert(mx.get_data() == [[1, 2, 3], [4, 5, 6]])
 
-def test_trasnpose():
+def test_transpose():
     mx = MyMatrix([[1, 2, 3], [4, 5, 6]])
     mx.transpose()
     assert(mx.get_data() == [[1, 4], [2, 5], [3, 6]])
 
-def test_trasnposed():
+def test_transposed():
     mx = MyMatrix([[1, 2, 3], [4, 5, 6]])
     assert(mx.transposed().get_data() == [[1, 4], [2, 5], [3, 6]])
     assert(mx.get_data() == [[1, 2, 3], [4, 5, 6]])
