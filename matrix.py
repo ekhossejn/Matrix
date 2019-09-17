@@ -27,6 +27,9 @@ class MyMatrix:
             else:
                 raise MatrixError('Matrix is wrong')
         self.__matrix = copy.deepcopy(data)
+
+    def get_data(self):
+        return copy.deepcopy(self.__matrix)
               
     def __repr__(self):
         max_num_len = - float('INF')
@@ -35,11 +38,13 @@ class MyMatrix:
                 if len(str(num)) > max_num_len:
                     max_num_len = len(str(num))
         s = []
-        a = '{:' + str(max_num_len  + 1) + '}'
+        a = '{:' + str(max_num_len) + '}'
         for elem in self.__matrix:
             s.append(str())
             for num in elem:
                 s[-1] += a.format(num)
+                s[-1] += ' '
+            s[-1] = s[-1][:-1]
         return '\n'.join(s)
 
     def size(self) -> tuple:
@@ -79,7 +84,6 @@ class MyMatrix:
         a.transpose()
         return a
     
-    //////////////////////////////////////////////////EX. 1 IS FINISHED///////////////////////////////////////////////////////////
     
     def __add__(self, other):
         n, m = check_size(self.__matrix, other.__matrix)
