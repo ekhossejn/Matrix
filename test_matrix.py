@@ -2,16 +2,8 @@ from matrix import MyMatrix
 
 def test_repr():
     array = [[-90, 10], [2, -2], [90, 10]]
-    ans = []
-    for row in array:
-            ans.append(str())
-            for num in row:
-                ans[-1] += '{:3}'.format(num)
-                ans[-1] += ' '
-            ans[-1] = ans[-1][:-1] 
-    sample = '\n'.join(ans)
-    assert(repr(MyMatrix(array) == sample))
-    assert(repr(MyMatrix([])) == '')
+    assert(MyMatrix(array).__repr__() =='-90  10\n  2  -2\n 90  10')
+    assert(MyMatrix([]).__repr__() == '')
     
 def test_size():
     mx = MyMatrix([[1], [2], [3]])
